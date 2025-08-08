@@ -14,5 +14,6 @@ class TextConst {
   static const and='and';
   static const policy ='Privacy Policy.';
   static const noPatient= "Server Error: Retry";
+  static const bookinDetail = "View Booking Details";
   
 }

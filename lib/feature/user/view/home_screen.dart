@@ -41,7 +41,8 @@ class MyHome extends StatelessWidget {
                           vertical: 8,
                           horizontal: 10,
                         ),
-                      ),style: const TextStyle(fontSize: 14)
+                      ),
+                      style: const TextStyle(fontSize: 14),
                     ),
                   ),
                   const SizedBox(width: 10),
@@ -81,18 +82,26 @@ class MyHome extends StatelessWidget {
                         return Card(
                           margin: const EdgeInsets.all(8),
                           child: ListTile(
-                            title: Text(
-                              "${index + 1}. ${patient.name}",
-                            ),
+                            title: Text("${index + 1}. ${patient.name}"),
                             subtitle: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text("Phone: ${patient.phone ?? ''}"),
-                                Text(" Date: ${patient.dateNdTime ?? 'No '}"),
-                              
+                                Text("Date: ${patient.dateNdTime ?? 'No '}"),
+                                Divider(),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    const Text(TextConst.bookinDetail),
+                                    Icon(
+                                      Icons.arrow_forward_ios_rounded,
+                                      color: ColorConst.darkGreen,
+                                    ),
+                                  ],
+                                ),
                               ],
                             ),
-                           
                           ),
                         );
                       },
