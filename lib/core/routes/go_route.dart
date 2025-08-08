@@ -1,6 +1,8 @@
 import 'package:ayurved/feature/auth/view/login_screen.dart';
 import 'package:ayurved/feature/auth/view/splash_screen.dart';
+import 'package:ayurved/feature/user/view/booking_user.dart';
 import 'package:ayurved/feature/user/view/home_screen.dart';
+import 'package:ayurved/feature/user/view/view_details_screen.dart';
 import 'package:go_router/go_router.dart';
 
 final GoRouter router = GoRouter(
@@ -8,5 +10,7 @@ final GoRouter router = GoRouter(
   routes: [
  GoRoute(path: '/splash',builder: (context, state) => MySplsh(),),   
  GoRoute(path: '/login' ,builder: (context, state) => MyLogin(),),
- GoRoute(path: '/home',builder: (context, state) => MyHome(),)
+ GoRoute(path: '/home',builder: (context, state) => MyHome(),),
+ GoRoute(path: '/userDetails',builder: (context, state) => MyUserDetails(),),
+ GoRoute(path: '/userBooking',builder: (context, state) => MyUserBooking(),)
 ]);

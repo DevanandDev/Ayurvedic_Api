@@ -3,6 +3,7 @@ import 'package:ayurved/core/constants/text_const.dart';
 import 'package:ayurved/core/widgets/button.dart';
 import 'package:ayurved/feature/user/viewmodel/patients_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class MyHome extends StatelessWidget {
@@ -12,7 +13,7 @@ class MyHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return SafeArea( 
       child: Scaffold(
         body: Padding(
           padding: const EdgeInsets.all(18.0),
@@ -89,16 +90,19 @@ class MyHome extends StatelessWidget {
                                 Text("Phone: ${patient.phone ?? ''}"),
                                 Text("Date: ${patient.dateNdTime ?? 'No '}"),
                                 Divider(),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    const Text(TextConst.bookinDetail),
-                                    Icon(
-                                      Icons.arrow_forward_ios_rounded,
-                                      color: ColorConst.darkGreen,
-                                    ),
-                                  ],
+                                GestureDetector(
+                                  onTap: () => context.push('/userDetails'),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      const Text(TextConst.bookinDetail),
+                                      Icon(
+                                        Icons.arrow_forward_ios_rounded,
+                                        color: ColorConst.darkGreen,
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ],
                             ),
@@ -109,7 +113,7 @@ class MyHome extends StatelessWidget {
                   );
                 },
               ),
-              submitBtn(),
+              submitBtn(() => context.push('/userBooking')),
               const SizedBox(height: 30),
             ],
           ),

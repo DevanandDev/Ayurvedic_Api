@@ -3,16 +3,14 @@ import 'package:ayurved/core/constants/text_const.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-Widget submitBtn() {
+Widget submitBtn(VoidCallback onTap) {
     return Container(
                         width: double.infinity,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: ElevatedButton(
-                          onPressed: () async {
-                         
-                          },
+                          onPressed: onTap,
                           style: ElevatedButton.styleFrom(
                             backgroundColor: ColorConst.darkGreen,
                             padding: const EdgeInsets.symmetric(vertical: 14),

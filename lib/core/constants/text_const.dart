@@ -15,5 +15,9 @@ class TextConst {
   static const policy ='Privacy Policy.';
   static const noPatient= "Server Error: Retry";
   static const bookinDetail = "View Booking Details";
+  static const fullName ='Enter your full name';
+  static const watsappField = 'Enter your watsapp number';
+  static const selectLocation ='Select your location';
+  static const enetrAddress= 'Enter your address';
   
 }
