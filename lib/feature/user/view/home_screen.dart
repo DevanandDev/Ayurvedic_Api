@@ -1,51 +1,56 @@
-// my_home.dart
 import 'package:ayurved/feature/user/viewmodel/patients_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class MyHome extends StatefulWidget {
+class MyHome extends StatelessWidget {
   const MyHome({super.key});
-
-  @override
-  State<MyHome> createState() => _MyHomeState();
-}
-
-class _MyHomeState extends State<MyHome> {
-  @override
-  void initState() {
-    super.initState();
-    Provider.of<PatientsProvider>(context, listen: false).getPatientProvider();
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Patients List")),
+      appBar: AppBar(title: const Text("Patients List")),
       body: Consumer<PatientsProvider>(
-        builder: (context, provider, _) {
+        builder: (context, provider, child) {
           if (provider.isload) {
             return const Center(child: CircularProgressIndicator());
+          }
+
+          if (provider.patient.isEmpty) {
+            return const Center(child: Text("No patients found"));
           }
 
           return ListView.builder(
             itemCount: provider.patient.length,
             itemBuilder: (context, index) {
-              final patient = provider.patient[index];
+              final p = provider.patient[1];
               return Card(
+                margin: const EdgeInsets.all(8),
                 child: ListTile(
-                  title: Text(patient.name),
+                  title: Text(p.name ?? "No Name"),
                   subtitle: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("Phone: ${patient.phone}"),
-                     
+                      Text("Phone: ${p.phone ?? '-'}"),
+                      Text("Branch: ${p.branch?.name ?? '-'}"),
+                      if (p.patientdetailsSet != null &&
+                          p.patientdetailsSet!.isNotEmpty)
+                        Text(
+                          "Treatment: ${p.patientdetailsSet![0].treatmentName ?? '-'}",
+                        ),
                     ],
                   ),
+                  trailing: Text("₹${p.totalAmount ?? 0}"),
                 ),
               );
             },
           );
         },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          context.read<PatientsProvider>().getPatientProvider();
+        },
+        child: const Icon(Icons.refresh),
       ),
     );
   }

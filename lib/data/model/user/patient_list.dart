@@ -1,8 +1,10 @@
 import 'package:ayurved/data/model/user/brach_model.dart';
+import 'package:ayurved/data/model/user/details_model.dart';
+
 
 class PatientModel {
   int? id;
-  List<PatientModel>? patientdetailsSet;
+  List<PatientDetailsModel>? patientdetailsSet; 
   BranchModel? branch;
   String? user;
   String? payment;
@@ -42,8 +44,12 @@ class PatientModel {
   factory PatientModel.fromJson(Map<String, dynamic> json) {
     return PatientModel(
       id: json['id'],
-      patientdetailsSet: (json['patientdetails_set'] as List?)?.map((e) => PatientModel.fromJson(e)).toList(),
-      branch: json['branch'] != null ? BranchModel.fromJson(json['branch']) : null,
+      patientdetailsSet: (json['patientdetails_set'] as List?)
+          ?.map((e) => PatientDetailsModel.fromJson(e))
+          .toList(),
+      branch: json['branch'] != null
+          ? BranchModel.fromJson(json['branch'])
+          : null,
       user: json['user'],
       payment: json['payment'],
       name: json['name'],

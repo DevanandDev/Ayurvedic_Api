@@ -1,15 +1,15 @@
 import 'package:ayurved/data/model/user/patient_list.dart';
 
-class statusModel {
+class StatusModel {
  
   bool? status;
   String? message;
   List<PatientModel>? patient;
 
-  statusModel({this.status, this.message, this.patient});
+  StatusModel({required this.status, this.message,required this.patient});
 
-  factory statusModel.fromJson(Map<String, dynamic> json) {
-    return statusModel(
+  factory StatusModel.fromJson(Map<String, dynamic> json) {
+    return StatusModel(
       status: json['status'],
       message: json['message'],
       patient: (json['patient'] as List?)?.map((e) => PatientModel.fromJson(e)).toList(),

@@ -14,7 +14,7 @@ class AuthService {
       final response = await dio.post(
         url,
         data: FormData.fromMap({
-          "name":username,
+          "username": username,
           "password_text":password
         }),
         options: Options(contentType: Headers.formUrlEncodedContentType)
