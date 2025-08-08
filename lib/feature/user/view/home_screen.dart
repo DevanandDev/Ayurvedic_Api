@@ -82,21 +82,17 @@ class MyHome extends StatelessWidget {
                           margin: const EdgeInsets.all(8),
                           child: ListTile(
                             title: Text(
-                              "${index + 1}.${patient.name}",
+                              "${index + 1}. ${patient.name}",
                             ),
                             subtitle: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text("Phone: ${patient.phone ?? ''}"),
-                                Text("Branch: ${patient.branch?.name ?? ''}"),
-                                if (patient.patientdetailsSet != null &&
-                                    patient.patientdetailsSet!.isNotEmpty)
-                                  Text(
-                                    "Treatment: ${patient.patientdetailsSet![0].treatmentName ?? ''}",
-                                  ),
+                                Text(" Date: ${patient.dateNdTime ?? 'No '}"),
+                              
                               ],
                             ),
-                            trailing: Text("₹${patient.totalAmount ?? 0}"),
+                           
                           ),
                         );
                       },

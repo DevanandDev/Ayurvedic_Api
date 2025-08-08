@@ -7,10 +7,23 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
-class MyLogin extends StatelessWidget {
+class MyLogin extends StatefulWidget {
   MyLogin({super.key});
+
+  @override
+  State<MyLogin> createState() => _MyLoginState();
+}
+
+class _MyLoginState extends State<MyLogin> {
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    usernameController.clear();
+    passwordController.clear();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +79,8 @@ class MyLogin extends StatelessWidget {
                                     passwordController.text.trim(),
                                   );
 
-                              if (value.logData?.accessToken != null || value.logData?.status == true) {
+                              if (value.logData?.accessToken != null ||
+                                  value.logData?.status == true) {
                                 context.pushReplacement('/home');
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(content: Text('Login Successfull')),
