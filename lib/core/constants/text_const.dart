@@ -13,14 +13,8 @@ class TextConst {
   static const termsCondition='Terms and Conditions';
   static const and='and';
   static const policy ='Privacy Policy.';
+  static const noPatient= "No patients found";
 
 
   
-  
-  
-
-
-  
-
-
 }

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:ayurved/data/model/user/patient_list.dart';
 import 'package:ayurved/data/service/user/patients.dart';
 import 'package:flutter/material.dart';
@@ -12,8 +14,10 @@ class PatientsProvider extends ChangeNotifier {
     notifyListeners();
     try {
       final response = await service.patientsService();
-      patient = response?.patient ?? [];
+      patient = response ?? [];
+      log(patient.toString());
     } catch (e) {
+      log('No Patients Available');
       throw Exception('Patients Not Get :$e');
     } finally {
       isload = false;

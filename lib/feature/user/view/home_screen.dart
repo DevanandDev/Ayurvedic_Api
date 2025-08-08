@@ -1,3 +1,4 @@
+import 'package:ayurved/core/constants/text_const.dart';
 import 'package:ayurved/feature/user/viewmodel/patients_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -8,7 +9,7 @@ class MyHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Patients List")),
+      appBar: AppBar(),
       body: Consumer<PatientsProvider>(
         builder: (context, provider, child) {
           if (provider.isload) {
@@ -16,33 +17,35 @@ class MyHome extends StatelessWidget {
           }
 
           if (provider.patient.isEmpty) {
-            return const Center(child: Text("No patients found"));
+            return const Center(child: Text(TextConst.noPatient));
           }
 
-          return ListView.builder(
-            itemCount: provider.patient.length,
-            itemBuilder: (context, index) {
-              final p = provider.patient[1];
-              return Card(
-                margin: const EdgeInsets.all(8),
-                child: ListTile(
-                  title: Text(p.name ?? "No Name"),
-                  subtitle: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text("Phone: ${p.phone ?? '-'}"),
-                      Text("Branch: ${p.branch?.name ?? '-'}"),
-                      if (p.patientdetailsSet != null &&
-                          p.patientdetailsSet!.isNotEmpty)
-                        Text(
-                          "Treatment: ${p.patientdetailsSet![0].treatmentName ?? '-'}",
-                        ),
-                    ],
+          return Expanded(
+            child: ListView.builder(
+              itemCount: provider.patient.length,
+              itemBuilder: (context, index) {
+                final patient = provider.patient[index];
+                return Card(
+                  margin: const EdgeInsets.all(8),
+                  child: ListTile(
+                    title: Text(patient.name ?? "No Name"),
+                    subtitle: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("Phone: ${patient.phone ?? ''}"),
+                        Text("Branch: ${patient.branch?.name ?? ''}"),
+                        if (patient.patientdetailsSet != null &&
+                            patient.patientdetailsSet!.isNotEmpty)
+                          Text(
+                            "Treatment: ${patient.patientdetailsSet![0].treatmentName ?? ''}",
+                          ),
+                      ],
+                    ),
+                    trailing: Text("₹${patient.totalAmount ?? 0}"),
                   ),
-                  trailing: Text("₹${p.totalAmount ?? 0}"),
-                ),
-              );
-            },
+                );
+              },
+            ),
           );
         },
       ),
